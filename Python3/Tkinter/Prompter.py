@@ -68,8 +68,8 @@ class Prompter:
         # zCenter (Close enough to make no odds?)
         width = prompter.tk.winfo_screenwidth()
         height = prompter.tk.winfo_screenheight()
-        x = width / 2 - (prompter.tk.winfo_reqwidth() / 2)
-        y = height / 2 - (prompter.tk.winfo_reqheight() / 2)
+        x = (width - prompter.tk.winfo_reqwidth()) / 2
+        y = (height - prompter.tk.winfo_reqheight()) / 2
         prompter.tk.geometry("+%d+%d" % (x, y))
         return True
 
