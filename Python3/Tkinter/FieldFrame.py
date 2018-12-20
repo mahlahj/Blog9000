@@ -85,6 +85,7 @@ class FieldFrame():
 
 if __name__ == "__main__":
     zroot = Tk()
+    zroot.title("FieldFrame Demo")
     data = OrderedDict()
     # The Variable Classes (BooleanVar, DoubleVar, IntVar, StringVar)
     data["Name"] = StringVar()
