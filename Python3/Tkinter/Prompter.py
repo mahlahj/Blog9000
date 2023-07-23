@@ -1,14 +1,17 @@
 #!/usr/bin/python3
 from tkinter import *
 
-# Mission: Create a way to query a user for command-line values.
-# Mission statement implies the encapsulation of a GUI paradigm.
-# Here is how to do so using tkinter under Python 3.
+# Mission: Create a way to query a user for command-line
+# values. Mission statement implies the encapsulation of
+# a GUI paradigm. Here is how to do so using tkinter under
+# Python 3.
 
-''' Prompter: Graphically get a dictionary of command-line strings from a user.
-Dictionary result is empty when the `cancel` button has been pressed, else the results
-will contain the tag-value pairing (i.e. Dictionary keys match the fields requested, to
-get the user's response for each field.)
+''' Prompter: Graphically get a dictionary of command-line
+strings from a user. Dictionary result is empty when the
+`cancel` button has been pressed, else the results
+will contain the tag-value pairing (i.e. Dictionary keys
+match the fields requested, to get the user's response
+for each field.)
 '''
 class Prompter:
     def __init__(self):
@@ -74,6 +77,7 @@ class Prompter:
         return True
 
     def show(self):
+        ''' Display the dialog - extract the results.'''
         from collections import OrderedDict
         self.tk.mainloop()
         try:
@@ -101,11 +105,17 @@ class Prompter:
 
 
 if __name__ == "__main__":
-    # Here is how we would use the Prompter from a Console Program:
-    results = Prompter.Prompt("this", "isa", "test", title="Just Do It!")
-    if len(results) is 0:
-        print("Pressed Cancel - no values!")
+    import sys
+    cmd_name = sys.argv[0]
+    if len(sys.argv) > 1:
+        params = sys.argv[1:]
     else:
-        print("Pressed Okay - got values!")
+        params = "This", "Isa", "TEST?" 
+
+    results = Prompter.Prompt(*params, title=cmd_name)
+    if not results:
+        print("Canceled")
+    else:
+        print(results)
         for ref in results:
-            print(ref, results[ref])
+            print(ref, '=', results[ref], '|', sep='', end='')
