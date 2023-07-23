@@ -30,9 +30,9 @@ class Editor:
         self.tk.quit()
 
     @staticmethod
-    def Begin(eparams, title="Input"):
+    def begin(eparams, title="Input"):
         if not isinstance(eparams, EditorParams):
-            raise Exception("Begin: Instance of EditorParams expected.")
+            raise Exception("begin: Instance of EditorParams expected.")
         
         ''' Create the frame, add the title, as well as the input fields.'''
         self = Editor()
@@ -67,7 +67,7 @@ class Editor:
         return self
 
     @staticmethod
-    def End(prompter):
+    def end(prompter):
         ''' Add the closing edit area, buttons, center, and pack the Frame.'''
         if prompter.last_row is None:
             return False
@@ -119,10 +119,10 @@ class Editor:
                 pass
 
     @staticmethod
-    def Prompt(*fields, title="Input"):
+    def prompt(*fields, title="Input"):
         ''' Basic mission statement completed. '''
-        self = Editor.Begin(*fields, title=title)
-        if Editor.End(self) is False:
+        self = Editor.begin(*fields, title=title)
+        if Editor.end(self) is False:
             raise Exception("AddButtons: Unexpected Error.")
         return self.show()
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     order.params["Subject:"] = "of a modern ..."
     order.params["Preamble:"] = "I am the very model ..."
     order.params[EditorParams.EDITBOX] = "Python interface."
-    results = Editor.Prompt(order, title="Just Do It!")
+    results = Editor.prompt(order, title="Just Do It!")
     if not results:
         print("Cancelled")
     else:

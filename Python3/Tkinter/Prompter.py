@@ -18,6 +18,7 @@ class Prompter:
         self._dict = None
         self._isOk = None
         self.last_row = None
+        self.tk = None
 
     def _okay(self):
         self._isOk = True
@@ -28,7 +29,7 @@ class Prompter:
         self.tk.quit()
 
     @staticmethod
-    def Begin(*fields, title="Input"):
+    def begin(*fields, title="Input"):
         ''' Create the frame, add the title, as well as the input fields.'''
         from collections import OrderedDict
         self = Prompter()
@@ -53,7 +54,7 @@ class Prompter:
         return self
 
     @staticmethod
-    def End(prompter):
+    def end(prompter):
         ''' Add the closing buttons, center, and pack the Frame.'''
         if prompter.last_row is None:
             return False
@@ -91,15 +92,16 @@ class Prompter:
         finally:
             try:
                 self.tk.destroy()
+                # self.tk = None
             except:
                 pass
 
 
     @staticmethod
-    def Prompt(*fields, title="Input"):
+    def prompt(*fields, title="Input"):
         ''' Basic mission statement completed. '''
-        self = Prompter.Begin(*fields, title=title)
-        if Prompter.End(self) is False:
+        self = Prompter.begin(*fields, title=title)
+        if Prompter.end(self) is False:
             raise Exception("AddButtons: Unexpected Error.")
         return self.show()
 
@@ -112,7 +114,7 @@ if __name__ == "__main__":
     else:
         params = "This", "Isa", "TEST?" 
 
-    results = Prompter.Prompt(*params, title=cmd_name)
+    results = Prompter.prompt(*params, title=cmd_name)
     if not results:
         print("Cancelled")
     else:
