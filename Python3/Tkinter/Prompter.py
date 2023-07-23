@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     results = Prompter.Prompt(*params, title=cmd_name)
     if not results:
-        print("Canceled")
+        print("Cancelled")
     else:
         print(results)
         for ref in results:
