@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 from tkinter import *
 from collections import OrderedDict
-# Mission: Create a way to edit the subject & content of a message.
+# Mission: Create a way to edit the subject & content
+# of a message.
 
 class EditorParams:
     EDITBOX = "ZEDIT:"    
@@ -133,9 +134,10 @@ if __name__ == "__main__":
     order.params["Preamble:"] = "I am the very model ..."
     order.params[EditorParams.EDITBOX] = "Python interface."
     results = Editor.Prompt(order, title="Just Do It!")
-    if len(results) is 0:
-        print("Pressed Cancel - no values!")
+    if not results:
+        print("Cancelled")
     else:
-        print("Pressed Okay - got values!")
+        print(results)
         for ref in results:
-            print(ref, results[ref])
+            print(ref, '=', results[ref], '|', sep='', end='')
+            print()

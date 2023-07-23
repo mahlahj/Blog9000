@@ -119,3 +119,4 @@ if __name__ == "__main__":
         print(results)
         for ref in results:
             print(ref, '=', results[ref], '|', sep='', end='')
+            print()
