@@ -1,0 +1,142 @@
+#!/usr/bin/python3
+from tkinter import *
+from collections import OrderedDict
+# File: Evaluate.py
+# Mission: Graphically edit / exchange eval()uatable
+# dictionaries. Record if [Okay] or [Cancel] was selected.
+
+
+class Prompter:
+    ''' Evaluate: Graphically exchange a dictionary of 
+    strings with a user. Dictionary keys match fields
+    requested.
+
+    Results will be returned a dictionary of strings.
+    A __btn_ok key is added and will be `True` if [Okay]
+    was selected, else is `False` if user pressed [Cancel].
+    '''
+    def __init__(self, a_dict, align='e'):
+        '''
+        Initialize fileds. Optional horizontal alignments
+        are n, s, [e], w ... Tk's `sticky` grid options.
+        '''
+        self._align = align # 
+        self._data = OrderedDict(a_dict)
+        self._dict = OrderedDict()
+        self._isOk = None
+        self.last_row = None
+        self.tk = None
+
+    def _okay(self):
+        self._isOk = True
+        self.tk.quit()
+
+    def _cancel(self):
+        self._isOk = False
+        self.tk.quit()
+
+    @staticmethod
+    def begin(fields, title="Input"):
+        ''' Create the frame, add the title, as well as the input fields.'''
+        self = Prompter(fields)
+        self.tk = Tk()
+
+        if title:
+            self.tk.title(title)
+
+        self.last_row = 0
+        # zFields (A Label, plus an Entry, in a grid layout)
+        for ref in self._data:
+            a_prompt = str(ref) + ": "
+            obj = Label(master=self.tk, text=a_prompt)
+            obj.grid(row=self.last_row, column=0,
+                     padx=4, sticky=self._align)
+
+            a_value = self._data[ref]
+            if not a_value:
+                a_value = ''
+            obj = Entry(master=self.tk, bd=5)
+            obj.insert(0, a_value)
+            obj.grid(row=self.last_row, column=1)
+
+            self._dict[ref]=obj
+            self.last_row += 1
+        return self
+
+    @staticmethod
+    def end(prompter):
+        ''' Add the closing buttons, center, and pack the Frame.'''
+        if prompter.last_row is None:
+            return False
+        if isinstance(prompter, Prompter) is False:
+            return False
+        # zButtons (A Frame in the grid, plus the properly-centered pair of buttons)
+        bottom = Frame(prompter.tk)
+        bottom.grid(row=prompter.last_row, columnspan=2)
+        btn = Button(bottom, text="Okay", command=prompter._okay)
+        btn.pack(side=LEFT, pady=12)
+
+        btn = Button(bottom, text="Cancel", command=prompter._cancel)
+        btn.pack(side=RIGHT, padx=10)
+
+        # zCenter (Close enough to make no odds?)
+        width = prompter.tk.winfo_screenwidth()
+        height = prompter.tk.winfo_screenheight()
+        x = (width - prompter.tk.winfo_reqwidth()) / 2
+        y = (height - prompter.tk.winfo_reqheight()) / 2
+        prompter.tk.geometry("+%d+%d" % (x, y))
+        return True
+
+    def show(self):
+        ''' Display the dialog - extract the results.'''
+        from collections import OrderedDict
+        self.tk.mainloop()
+        try:
+            results = OrderedDict()
+            if not self._isOk:
+                return results
+
+            for ref in self._dict.keys():
+                results[ref] = (self._dict[ref]).get()
+            return results
+        finally:
+            try:
+                self.tk.destroy()
+                # self.tk = None
+            except:
+                pass
+
+
+    @staticmethod
+    def prompt(fields, title="Input"):
+        ''' Basic mission statement completed. '''
+        self = Prompter.begin(fields, title=title)
+        if Prompter.end(self) is False:
+            raise Exception("AddButtons: Unexpected Error.")
+        return self.show()
+
+
+if __name__ == "__main__":
+    import sys
+    cmd_name = sys.argv[0]
+    sz = len(sys.argv)
+    params = {"This":21, "Isa":123.45, "TEST":'a test!'}
+    if sz > 2:
+        print("Input: One stringified dictionary as a parameter, please.")
+        print(f"Example: \"{str(params)}\"")
+        print("\t(i.e: surrounding quotations are os-required)")
+        quit()
+    elif sz == 2:
+        data = sys.argv[1:][0]
+        params = eval(data)
+    else:
+        quit()
+
+    results = Prompter.prompt(params, title=cmd_name)
+    if not results:
+        params['__btn_ok'] = False
+        print(params)
+    else:
+        results['__btn_ok'] = True
+        print(dict(results))
+    print()
