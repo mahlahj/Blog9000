@@ -5,6 +5,9 @@ from collections import OrderedDict
 # Mission: Graphically edit / exchange eval()uatable
 # dictionaries. Record if [Okay] or [Cancel] was selected.
 
+# Source:
+# https://github.com/soft9000/Blog9000/blob/master/Python3/Tkinter/Evaluate.py
+
 
 class Prompter:
     ''' Evaluate: Graphically exchange a dictionary of 
@@ -118,9 +121,10 @@ class Prompter:
 
 if __name__ == "__main__":
     import sys
-    cmd_name = sys.argv[0]
+    import os
+    cmd_name = sys.argv[0].split(os.sep)[-1]
     sz = len(sys.argv)
-    params = {"This":21, "Isa":123.45, "TEST":'a test!'}
+    params = {"NAME":'R.A. Geekbo', "PHONE":'123-456-7890', "EMAIL":'a.Geekbo@zbobo.com'}
     if sz > 2:
         print("Input: One stringified dictionary as a parameter, please.")
         print(f"Example: \"{str(params)}\"")
@@ -129,8 +133,6 @@ if __name__ == "__main__":
     elif sz == 2:
         data = sys.argv[1:][0]
         params = eval(data)
-    else:
-        quit()
 
     results = Prompter.prompt(params, title=cmd_name)
     if not results:
