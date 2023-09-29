@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from tkinter import *
+from tkinter import font
 from collections import OrderedDict
 # File: Evaluate.py
 # Mission: Graphically edit / exchange eval()uatable
@@ -18,11 +19,13 @@ class Prompter:
     A __btn_ok key is added and will be `True` if [Okay]
     was selected, else is `False` if user pressed [Cancel].
     '''
-    def __init__(self, a_dict, align='e'):
+    def __init__(self, a_dict, font_size=16, font_name='TkFixedFont', align='e'):
         '''
         Initialize fileds. Optional horizontal alignments
         are n, s, [e], w ... Tk's `sticky` grid options.
         '''
+        self._font_default_size = font_size
+        self._font_default_name = font_name
         self._align = align # 
         self._data = OrderedDict(a_dict)
         self._dict = OrderedDict()
@@ -46,19 +49,28 @@ class Prompter:
 
         if title:
             self.tk.title(title)
+        self._font_default = font.nametofont(self._font_default_name)
+        self._font_default.configure(size=self._font_default_size)
+        self._font_default.configure(weight=font.NORMAL)
+        self._font_bold = font.nametofont(self._font_default_name)
+        self._font_bold.configure(size=self._font_default_size)
+        self._font_bold.configure(weight=font.BOLD)
 
         self.last_row = 0
         # zFields (A Label, plus an Entry, in a grid layout)
         for ref in self._data:
             a_prompt = str(ref) + ": "
-            obj = Label(master=self.tk, text=a_prompt)
+            obj = Label(master=self.tk,
+                        text=a_prompt,
+                        font=self._font_bold)
             obj.grid(row=self.last_row, column=0,
                      padx=4, sticky=self._align)
 
             a_value = self._data[ref]
             if not a_value:
                 a_value = ''
-            obj = Entry(master=self.tk, bd=5)
+            obj = Entry(master=self.tk, bd=5,
+                        font=self._font_default)
             obj.insert(0, a_value)
             obj.grid(row=self.last_row, column=1)
 
@@ -76,10 +88,14 @@ class Prompter:
         # zButtons (A Frame in the grid, plus the properly-centered pair of buttons)
         bottom = Frame(prompter.tk)
         bottom.grid(row=prompter.last_row, columnspan=2)
-        btn = Button(bottom, text="Okay", command=prompter._okay)
+        btn = Button(bottom, text="Okay",
+                     command=prompter._okay,
+                     font=prompter._font_bold)
         btn.pack(side=LEFT, pady=12)
 
-        btn = Button(bottom, text="Cancel", command=prompter._cancel)
+        btn = Button(bottom, text="Cancel",
+                     command=prompter._cancel,
+                     font=prompter._font_bold)
         btn.pack(side=RIGHT, padx=10)
 
         # zCenter (Close enough to make no odds?)
