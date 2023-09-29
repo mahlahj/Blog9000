@@ -50,9 +50,11 @@ NOTES: Please encode your dictionary as a single str(dict()) parameter when usin
         self.tk.quit()
 
     @staticmethod
-    def begin(fields, title="Input"):
+    def begin(fields, title="Input",
+             font_size=16, font_name='TkFixedFont',
+             align='e'):
         ''' Create the frame, add the title, as well as the input fields.'''
-        self = EditDict(fields)
+        self = EditDict(fields, font_size, font_name, align)
         self.tk = Tk()
 
         if title:
@@ -134,9 +136,14 @@ NOTES: Please encode your dictionary as a single str(dict()) parameter when usin
                 pass
 
     @staticmethod
-    def edit(fields, title="Input"):
+    def edit(fields, title="Input",
+             font_size=16, font_name='TkFixedFont',
+             align='e'):
         ''' Basic mission statement completed. '''
-        self = EditDict.begin(fields, title=title)
+        self = EditDict.begin(fields, title,
+                              font_size,
+                              font_name,
+                              align=align)
         if EditDict.end(self) is False:
             raise Exception("AddButtons: Unexpected Error.")
         return self.show()
