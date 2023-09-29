@@ -11,14 +11,24 @@ from collections import OrderedDict
 
 
 class EditDict:
-    ''' Evaluate: Graphically exchange a dictionary of 
-    strings with a user. Dictionary keys match fields
-    requested.
+    '''Graphically exchange a dictionary of strings with a user. Dictionary keys match fields requested. Font, size, and label allignment can be selected upon construction as per Tkinter definition.
 
-    Results will be returned a dictionary of strings.
-    A __btn_ok key is added and will be `True` if [Okay]
-    was selected, else is `False` if user pressed [Cancel].
-    '''
+G.U.I Usage:
+===========
+from Prompter9000.PyEdit import *
+params = {"NAME":'My', "PHONE":'123-456', "EMAIL":'a.Geekbo@zbobo.com'}
+EditDict.edit(params)
+
+NOTE: Dictionary results will be returned ONLY IF the data was changed. Otherwise an empty dictionary will be returned.
+
+Console Usage:
+=============    
+python PyEdit.py "{'NAME': 'My', 'PHONE': '123-456', 'EMAIL': 'a.Geekbo@zbobo.com'}"{'NAME': 'My', 'PHONE': '123-456', 'EMAIL': 'a.Geekbo@zbobo.com', '__btn_ok': True}
+
+NOTES: Please encode your dictionary as a single str(dict()) parameter when using the CLI. Results will be returned a dictionary of strings.
+A __btn_ok key is added and will be `True` if [Okay]
+was selected, else is `False` if user pressed [Cancel].
+'''
     def __init__(self, a_dict, font_size=16, font_name='TkFixedFont', align='e'):
         '''
         Initialize fileds. Optional horizontal alignments
