@@ -25,9 +25,7 @@ Console Usage:
 =============    
 python PyEdit.py "{'NAME': 'My', 'PHONE': '123-456', 'EMAIL': 'a.Geekbo@zbobo.com'}"{'NAME': 'My', 'PHONE': '123-456', 'EMAIL': 'a.Geekbo@zbobo.com', '__btn_ok': True}
 
-NOTES: Please encode your dictionary as a single str(dict()) parameter when using the CLI. Results will be returned a dictionary of strings.
-A __btn_ok key is added and will be `True` if [Okay]
-was selected, else is `False` if user pressed [Cancel].
+NOTES: Please encode your dictionary as a single str(dict()) parameter when using the CLI. Results will be returned as a dictionary of strings. A __btn_ok key is added and will be `True` if [Okay] was selected, else is `False` if user pressed [Cancel].
 '''
     def __init__(self, a_dict, font_size=16, font_name='TkFixedFont', align='e'):
         '''
