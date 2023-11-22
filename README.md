@@ -17,6 +17,8 @@ May also be used from the C.L.I:
 
 ### Console Usage
 
+![Editor](https://github.com/soft9000/Blog9000/blob/master/Python3/Tkinter/PyEdit.png)
+
 ```
 python PyEdit.py "{'NAME': 'My', 'PHONE': '123-456', 'EMAIL': 'a.Geekbo@zbobo.com'}"
 {'NAME': 'My', 'PHONE': '123-456', 'EMAIL': 'a.Geekbo@zbobo.com', '__btn_ok': True}
@@ -33,5 +35,7 @@ Here is some how-to-use-it [video inspirations](https://youtu.be/gaT4_IuxOWs)
 
 ### PyPi
 
-Now available on [PyPi](https://pypi.org/project/Prompter9000/)
+![Counter](https://github.com/soft9000/Blog9000/blob/master/Python3/Tkinter/PyCount.png)
+
+2023/11/22: A **superset** of functionality - specifically, *Prompter9000.PyCount* - is now installable only by using [PyPi](https://pypi.org/project/Prompter9000/)
 
