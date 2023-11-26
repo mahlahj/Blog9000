@@ -32,4 +32,3 @@
         CLOSE MM-COBOL-SDF-FILE.
 
         STOP RUN.
-        END PROGRAM Q_READER.
