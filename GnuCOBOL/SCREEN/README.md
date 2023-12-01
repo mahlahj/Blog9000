@@ -3,9 +3,15 @@ GbuCOBOL adds some interesting colorization opportunities!
 
 The paradigm for COBOL, however, remains buffered. From IBM's LU2.s, to GNU, we need to treat the screen as a ”send it and share it” set-of display strings.
 
-<img src='https://github.com/soft9000/Blog9000/blob/master/GnuCOBOL/SCREEN/CHRISTMAS_2023.png' width="50%" height="50%">
-
 The [WS_COLORS.cpy](https://github.com/soft9000/Blog9000/blob/master/GnuCOBOL/SCREEN/WS_COLORS.cpy) copy book will jump start an interesting colorization.
+
+## zForm
+<img src='https://github.com/soft9000/Blog9000/blob/master/GnuCOBOL/SCREEN/EX_SCREEN_ACCEPT.png' width="50%" height="50%">
+
+Here is a 'nifty (yes, he said that) way to accept an L.U.2 - on G.N.U ;-) [EX_SCREEN_ACCEPT.cob](https://github.com/soft9000/Blog9000/blob/master/GnuCOBOL/SCREEN/EX_SCREEN_ACCEPT.cob).
+
+## zArt
+<img src='https://github.com/soft9000/Blog9000/blob/master/GnuCOBOL/SCREEN/CHRISTMAS_2023.png' width="50%" height="50%">
 
 The [TreeGet.py](https://github.com/soft9000/Blog9000/blob/master/GnuCOBOL/SCREEN/TreeGet.py) file demonstrates how to use a modern scripting language to generate a screen.
 
