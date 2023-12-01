@@ -1,5 +1,5 @@
 ## zFolder
-GbuCOBOL adds some interesting colorization opportunities!
+GnuCOBOL adds some interesting colorization opportunities!
 
 The paradigm for COBOL, however, remains buffered. From IBM's LU2.s, to GNU, we need to treat the screen as a ”send it and share it” set-of display strings.
 
