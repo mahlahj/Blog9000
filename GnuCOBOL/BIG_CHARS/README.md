@@ -2,7 +2,7 @@
 
 Looking forward to cob-ing ;-) together a banner function for COBOL. 
 
-![image](https://github.com/soft9000/Blog9000/tree/master/GnuCOBOL/BIG_CHARS/BIG_CHARS.png)
+<img src='https://github.com/soft9000/Blog9000/tree/master/GnuCOBOL/BIG_CHARS/BIG_CHARS.png' width="50%" height="50%">
 
 Re-using [Banner9000](https://www.youtube.com/watch?v=XBbkdlYs9hM).
 
