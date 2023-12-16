@@ -1,0 +1,24 @@
+*> Mission: Demonstrate how to find an indexed X.
+*> cobc -x -j -free EX_SEARCH_CHAR.cob
+IDENTIFICATION DIVISION. 
+PROGRAM-ID. EX_SEARCH_CHAR.
+
+DATA DIVISION. 
+WORKING-STORAGE SECTION. 
+01 THE-CHARS VALUE 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'. 
+    05 CHAR-SET OCCURS 26 TIMES INDEXED BY SUBS. 
+        10 A-CHAR PIC X. 
+01 ZCHAR PIC X.
+
+PROCEDURE DIVISION.
+    DISPLAY "Subject: [" THE-CHARS "]".
+    SET SUBS TO 1.
+    MOVE 'N' TO ZCHAR. *> Fun: Change ZCHAR to something else?
+    SEARCH CHAR-SET
+        AT END DISPLAY ZCHAR ' Bummer!' 
+        WHEN ZCHAR = A-CHAR(SUBS) 
+            DISPLAY ' Gotcha: ' A-CHAR(SUBS) " @ LOC: " SUBS
+    END-SEARCH *> Fun: Change to a persion? Replace?
+STOP RUN.
+
+END PROGRAM EX_SEARCH_CHAR.
