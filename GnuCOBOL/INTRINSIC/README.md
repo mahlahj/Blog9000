@@ -1,6 +1,6 @@
 ## PIC GNU VALUE COMP-STANDARD-101 OCCURS 104 TIMES?
 
-Survey SAYS:
+Survey [SAYS](https://youtu.be/jSTXzeWdB_Q):
 
 ```
 Modern COBOL: Intrinsic Functions.
